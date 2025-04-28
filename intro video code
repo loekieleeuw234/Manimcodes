@@ -1,0 +1,97 @@
+from manim import *
+
+class qvid(Scene):
+    def construct(self):
+        
+        t9 = Text("Our Channel")
+        self.play(Write(t9)) 
+
+        self.play(FadeOut(t9))      
+       
+        s1 = Square(side_length=0.5, color=ORANGE, fill_opacity=1).shift(LEFT * 3)    
+        s2 = Square(side_length=0.5, color=ORANGE, fill_opacity=1).move_to([-6, -2, 0])
+
+        g1 = VGroup(s1, s2)
+
+        self.play(Write(s1), Write(s2))
+        self.play(s2.animate.next_to(s1, LEFT))
+        self.wait(1)
+        
+        s3 = Square(side_length=0.5, fill_opacity=1, color=RED)
+        s4 = Square(side_length=0.5, fill_opacity=1, color=BLUE)
+        s5 = Square(side_length=0.5, fill_opacity=1, color=YELLOW)
+        s6 = Square(side_length=0.5, fill_opacity=1, color=ORANGE)
+        s7 = Square(side_length=0.5, fill_opacity=1, color=GREEN)
+
+        g2 = VGroup(s3, s4, s5, s6, s7).arrange(RIGHT, buff=0.2)
+        g2.move_to(g1.get_center())
+        
+        self.play(
+            g1.animate.move_to([0, 0, 0]),
+            ReplacementTransform(g1, g2)
+        )
+
+        g3 = VGroup(s4, s5, s6, s7)
+
+        self.play(
+            s3.animate.move_to([0, 0, 0]),
+            g3.animate.move_to([-5, -3, 0])
+        )
+
+        c1 = Circle(fill_opacity=1, color=PINK)
+        self.play(Transform(s3, c1))
+
+        t1 = Text("Manim", color=WHITE).move_to([0, 2, 0])
+        self.play(Write(t1))
+
+        a1 = Arc(radius=2, start_angle=0, angle=PI, color=BLUE)
+
+        self.play(FadeOut(c1, t1, s3))
+        self.play(s4.animate.move_to([0, 0, 0]))
+
+        self.play(Transform(s4, a1))
+
+        t2 = Text("Python", color=WHITE).move_to([0, 1, 0])
+
+        self.play(Write(t2))
+
+        self.play(FadeOut(s4, a1, t2))
+
+        self.play(s5.animate.move_to([0, 0, 0]))
+
+        t3 = Text("Tech", color=WHITE).move_to([0, 2, 0])
+
+        r1 = Rectangle(
+            color=PINK,
+            fill_opacity=1
+        )
+
+        self.play(Transform(s5, r1))
+
+        self.play(Write(t3))
+
+        self.play(FadeOut(s5, r1, t3))
+
+        self.play(s6.animate.move_to([0, 0, 0]))
+
+        tr1 = Triangle(fill_opacity=1, color=GREEN)
+
+        self.play(Transform(s6, tr1))
+
+        t4 = Text("Chromebooks", color=WHITE).move_to([0, 2, 0])
+
+        self.play(Write(t4))
+
+        self.play(FadeOut(t4, tr1, s6))
+
+        self.play(s7.animate.move_to([0, 0, 0]))
+
+        l1 = Line(fill_opacity=1, color=PURE_GREEN)
+
+        self.play(Transform(s7, l1))
+
+        t5 = Text("Linux", color=WHITE).move_to([0, 2, 0])
+
+        self.play(Write(t5))
+
+        self.play(FadeOut(t5, l1, s7))
